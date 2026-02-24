@@ -13,6 +13,7 @@ dependencies {
     implementation project(':model')
     implementation project(':playback:base')
     implementation project(':ui:episodes')
+    implementation 'androidx.media3:media3-common:1.9.2'
 
     annotationProcessor "androidx.annotation:annotation:$annotationVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"

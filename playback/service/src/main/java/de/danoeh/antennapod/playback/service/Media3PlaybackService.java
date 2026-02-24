@@ -128,6 +128,9 @@ public class Media3PlaybackService extends MediaLibraryService {
             } else if (customCommand.customAction.equals(SESSION_COMMAND_NEXT_CHAPTER.customAction)) {
                 seekToNextChapter();
                 return Futures.immediateFuture(new SessionResult(SessionResult.RESULT_SUCCESS));
+            } else if (customCommand.customAction.equals(SESSION_COMMAND_FAST_FORWARD.customAction)) {
+                seekForward();
+                return Futures.immediateFuture(new SessionResult(SessionResult.RESULT_SUCCESS));
             }
             return super.onCustomCommand(session, controller, customCommand, args);
         }
@@ -412,6 +415,14 @@ public class Media3PlaybackService extends MediaLibraryService {
         }
 
         player.seekTo(chapters.get(nextChapter).getStart());
+    }
+
+    @UnstableApi
+    private void seekForward() {
+        if (currentPlayable == null || player == null) {
+            return;
+        }
+        player.seekForward();
     }
 
     /**
